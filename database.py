@@ -1,23 +1,22 @@
-# ============================================
-# database.py
+
+
 # Conexión a la base de datos + Modelos (tablas)
-# ============================================
+
 
 from sqlalchemy import create_engine, Column, Integer, String, Float, Date, Time, ForeignKey
 from sqlalchemy.orm import scoped_session, sessionmaker, relationship
 from sqlalchemy.ext.declarative import declarative_base
 
-# ============================================
+
 # CONEXIÓN A LA BASE DE DATOS
-# ============================================
+
 engine = create_engine("sqlite:///database.db")
 db_session = scoped_session(sessionmaker(bind=engine))
 Base = declarative_base()
 Base.query = db_session.query_property()
 
-# ============================================
 # TABLA: PRODUCTOS
-# ============================================
+
 class Producto(Base):
     __tablename__ = "productos"
 
@@ -29,9 +28,8 @@ class Producto(Base):
     ventas = relationship("Venta", back_populates="producto")
 
 
-# ============================================
 # TABLA: VENTAS
-# ============================================
+
 class Venta(Base):
     __tablename__ = "ventas"
 
@@ -46,7 +44,7 @@ class Venta(Base):
     producto = relationship("Producto", back_populates="ventas")
 
 
-# ============================================
+
 # CREAR LAS TABLAS
-# ============================================
+
 Base.metadata.create_all(engine, Base.metadata.tables.values(), checkfirst=True)
