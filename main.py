@@ -1,7 +1,7 @@
-# ============================================
-# main.py
-# API de Ventas - Endpoints (Parte A + Parte B)
-# ============================================
+
+
+# API de Ventas - Endpoints Parte A Parte B
+
 
 from fastapi import FastAPI, HTTPException
 from typing import List
@@ -11,9 +11,9 @@ from schema import ProductoCreate, ProductoResponse, VentaCreate, VentaResponse
 
 app = FastAPI(title="API de Ventas", version="1.0.0")
 
-# ============================================
+
 # ENDPOINTS DE PRODUCTOS (PARTE A)
-# ============================================
+
 
 @app.post("/productos", response_model=ProductoResponse)
 def crear_producto(producto: ProductoCreate):
@@ -54,9 +54,9 @@ def eliminar_producto(id: int):
     db_session.commit()
     return {"mensaje": "Producto eliminado"}
 
-# ============================================
+
 # ENDPOINTS DE VENTAS (PARTE B)
-# ============================================
+
 
 @app.post("/ventas", response_model=VentaResponse)
 def crear_venta(venta: VentaCreate):
