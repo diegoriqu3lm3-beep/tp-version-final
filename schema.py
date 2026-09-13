@@ -1,14 +1,14 @@
-# ============================================
+
 # schema.py
 # Validación de datos (Pydantic)
-# ============================================
+
 
 from pydantic import BaseModel
 from datetime import date, time
 
-# ============================================
+
 # SCHEMAS DE PRODUCTO
-# ============================================
+
 class ProductoCreate(BaseModel):
     nombre: str
     precio: float
@@ -18,9 +18,8 @@ class ProductoResponse(ProductoCreate):
     class Config:
         from_attributes = True
 
-# ============================================
 # SCHEMAS DE VENTA
-# ============================================
+
 class VentaCreate(BaseModel):
     fecha: date
     hora: time
